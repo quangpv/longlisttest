@@ -5,19 +5,19 @@ import { Keyboard } from "react-native";
 
 export function SearchComponent() {
   const context = useContext(PostContext);
-  const [text, setText] = useState("");
+
   return <>
     <TextInput
       style={styles.input}
-      value={text}
+      value={context.state.text}
       placeholder={"Search by text"}
       onChangeText={(text) => {
-        setText(text);
+        context.dispatch({ type: "search", text });
       }} />
 
     <TouchableOpacity style={styles.button} onPress={() => {
       Keyboard.dismiss();
-      context.dispatch({ type: "search", text });
+      context.dispatch({ type: "re-render" });
     }}>
       <Text style={{ color: "#000" }}>Re-render</Text>
     </TouchableOpacity>

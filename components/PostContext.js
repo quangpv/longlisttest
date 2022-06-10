@@ -4,11 +4,11 @@ import { reducer } from "./PostReducer";
 
 const initialState = {
   originalPosts: [],
-  total: 0,
+  allPosts: [],
   text: "",
   posts: [],
   hasMore: function() {
-    return this.posts.length < this.total;
+    return this.posts.length < this.allPosts.length;
   },
 };
 

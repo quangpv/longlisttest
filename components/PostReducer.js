@@ -1,3 +1,5 @@
+import { PostNumberRandom } from "../utils/PostNumberRandom";
+
 const pageLimit = 20;
 
 function filterPosts(originalPosts, text) {
@@ -13,48 +15,62 @@ function subPosts(posts, offset) {
   for (let index = 0; index < count; index++) {
     result.push(posts[index]);
   }
-  return [
-    result,
-    posts.length,
-  ];
+  return {
+    posts: result,
+    allPosts: posts,
+  };
 }
 
-function searchPosts(originalPosts, text) {
-  return subPosts(filterPosts(originalPosts, text), 0);
+function searchPosts(state, text) {
+  return subPosts(filterPosts(state.originalPosts, text), 0);
 }
 
-function retrievePosts(originalPosts, offset, keySearch) {
-  return subPosts(filterPosts(originalPosts, keySearch), offset);
+function retrievePosts(state) {
+  return subPosts(state.allPosts, state.posts.length);
+}
+
+function reRenderPosts(state) {
+  const random = new PostNumberRandom();
+  const originalPosts = state.originalPosts.map(it => ({ ...it, number: random.randomNext() }));
+
+  return {
+    originalPosts,
+    ...subPosts(filterPosts(originalPosts, state.text), state.posts.length),
+  };
+}
+
+function savePosts(originalPosts) {
+  const random = new PostNumberRandom();
+  originalPosts = originalPosts.map(it => ({ ...it, number: random.randomNext() }));
+  return {
+    originalPosts,
+    ...subPosts(originalPosts, 0),
+  };
 }
 
 export function reducer(state, action) {
-  let [posts, newTotal] = [];
   switch (action.type) {
     case "save":
       const original = action.originalPosts || [];
-      [posts, newTotal] = subPosts(original, 0);
       return {
         ...state,
-        originalPosts: original,
-        total: newTotal,
-        posts: posts,
+        ...savePosts(original),
       };
     case "retrieve":
-      const keySearch = action.text || state.text;
-      [posts, newTotal] = retrievePosts(state.originalPosts, state.posts.length, keySearch);
       return {
         ...state,
-        text: keySearch,
-        total: newTotal,
-        posts: posts,
+        ...retrievePosts(state),
       };
     case "search":
-      [posts, newTotal] = searchPosts(state.originalPosts, action.text);
       return {
         ...state,
         text: action.text,
-        total: newTotal,
-        posts: posts,
+        ...searchPosts(state, action.text),
+      };
+    case "re-render":
+      return {
+        ...state,
+        ...reRenderPosts(state),
       };
     default:
       throw new Error();
