@@ -20,7 +20,10 @@ react-native run-android
 
 ## How to review source code
 
-The source code included in `src` folder Architecture
+The source code included in `src` folder 
+
+
+Architecture
 
 1. `src/components` includes view components
 2. `src/images` includes app resources
