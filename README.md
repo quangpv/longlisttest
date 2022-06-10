@@ -20,8 +20,7 @@ react-native run-android
 
 ## How to review source code
 
-The source code included in `src` folder 
-
+The source code included in `src` folder
 
 Architecture
 
@@ -34,5 +33,7 @@ Architecture
 
 ## Screenshot after completed.
 
-![alt text](demo/Screen%20Shot%202022-06-10%20at%204.39.50%20PM.png)
+<div style="width:200px">
 
+![Demo image](demo/Screen%20Shot%202022-06-10%20at%204.39.50%20PM.png)
+</div>
