@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import { fetchPosts } from "../model/fetch-post";
-import { reducer } from "./PostReducer";
+import { reducer } from "../reducer/PostReducer";
 
 const initialState = {
   originalPosts: [],
