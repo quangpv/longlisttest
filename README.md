@@ -31,9 +31,6 @@ Architecture
 5. `src/reducer` include use cases.
 6. `App.js` main application.
 
-## Screenshot after completed.
+## Screenshot.
 
-<div style="width:200px">
-
-![Demo image](demo/Screen%20Shot%202022-06-10%20at%204.39.50%20PM.png)
-</div>
+<img src='https://github.com/quangpv/longlisttest/blob/main/demo/Screen%20Shot%202022-06-10%20at%204.39.50%20PM.png' width='300px'/>
