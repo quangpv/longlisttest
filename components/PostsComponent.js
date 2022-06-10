@@ -12,12 +12,6 @@ export default function PostsComponent() {
     context.dispatch({ type: "retrieve" });
   };
 
-  context.onSearch = (count) => {
-    if (count > 0) {
-      listRef.current.scrollToIndex({ animated: false, index: 0 });
-    }
-  };
-
   return <FlatList
     ref={listRef}
     initialNumToRender={5}

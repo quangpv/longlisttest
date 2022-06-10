@@ -30,10 +30,7 @@ export default function PostContextProvider({ children }) {
 
   const context = {
     state: state,
-    dispatch: function(action) {
-      dispatchAction(action);
-      if (action.type === "search") this?.onSearch?.(state.total);
-    },
+    dispatch: dispatchAction,
   };
   return <PostContext.Provider value={context}>
     {children}
