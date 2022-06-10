@@ -28,3 +28,8 @@ The source code included in `src` folder Architecture
 4. `src/utils` includes utilities.
 5. `src/reducer` includes use cases
 6. `App.js` main application
+
+## Screenshot after completed.
+
+![alt text](demo/Screen%20Shot%202022-06-10%20at%204.39.50%20PM.png)
+
